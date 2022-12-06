@@ -35,25 +35,33 @@ function winning(board, player) {
 // draw X into parameter  //? (<div id="fieldPosition"></div>)
 
 function xToField(fieldPosition) {
+  if (playedFields[fieldPosition - 1] == "p") {
+    return false;
+  }
   for (let i = 0; i < 2; i++) {
     const cross = document.createElement("span");
     cross.className = "player-cross-filled";
-    document.getElementById(fieldPosition).append(cross);
+    document
+      .querySelector("#field" + fieldPosition + " > div.field-content")
+      .append(cross);
   }
   playerArray.push(fieldPosition);
-  selectField(fieldPosition);
 }
 
 // npc function to draw a circle to field
 
 function oToField(fieldPosition) {
+  if (playedFields[fieldPosition - 1] == "c") {
+    return false;
+  }
   for (let i = 0; i < 1; i++) {
     const circle = document.createElement("div");
     circle.className = "computer-circle-filled";
-    document.getElementById(fieldPosition).append(circle);
+    document
+      .querySelector("#field" + fieldPosition + " > div.field-content")
+      .append(circle);
   }
   npcArray.push(fieldPosition);
-  selectField(fieldPosition);
 }
 
 // writes picked field position with player string back into the array
@@ -66,14 +74,39 @@ function selectField(fieldPosition, player) {
   }
 }
 
+// every field ever
+
 const playFields = document.querySelectorAll(".field");
 
-function playTheGame() {
+// player clicked field written to playedFields array with "p"
+
+function playerPick() {
   playFields.forEach((field) => {
     field.addEventListener("click", (e) => {
-      console.log(e.target.id);
+      const pickedFieldId = e.target.id;
+      const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6));
+      console.log(pickedFieldIndexNumber);
+      xToField(pickedFieldIndexNumber);
+      selectField(pickedFieldIndexNumber, "p");
+      console.log(playedFields);
+      game();
     });
   });
 }
 
-playTheGame();
+playerPick();
+
+function game() {
+  if (winning(playedFields, "p")) {
+    console.log("Player Wins!");
+    document.querySelector("h1").textContent = "Player Wins!";
+  }
+  if (winning(playedFields, "c")) {
+    console.log("Computer Wins!");
+    document.querySelector("h1").textContent = "Computer Wins!";
+  }
+  if (playedGames > 5) {
+    console.log("It's a Draw!");
+    document.querySelector("h1").textContent = "It's a Draw!";
+  }
+}

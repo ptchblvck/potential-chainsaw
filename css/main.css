@@ -192,6 +192,11 @@ body {
   padding-right: 45px;
 }
 
+.player:hover,
+.computer:hover {
+  scale: 1.1;
+}
+
 .player-cross {
   position: absolute;
   display: inline-block;
