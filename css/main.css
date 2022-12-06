@@ -1,0 +1,254 @@
+/* variables */
+
+:root {
+  --color-one: #143cdb;
+  --color-two: #60b0f4;
+  --color-three: #ff7faa;
+  --color-four: #fb98fb;
+  --color-five: #98fb98;
+  --color-six: #7fffd4;
+  --color-seven: #f4a460;
+  --color-eight: #db143c;
+
+  --color-player: #143cdb;
+  --color-npc: #db143c;
+
+  --bg-color: rgb(31, 33, 44);
+  --field-color: rgb(53, 52, 59);
+
+  --highlight-color: rgba(127, 255, 212, 0.5);
+  --highlight-color-dark: rgba(127, 255, 212, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: rgb(228, 228, 228);
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--bg-color);
+  background-repeat: no-repeat;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  background: var(--bg-color);
+  background-repeat: no-repeat;
+}
+
+#fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 3px;
+}
+
+#fields:hover > .field > .field-border {
+  opacity: 1;
+}
+
+.field {
+  cursor: pointer;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: var(--field-color);
+  border-radius: 1px;
+}
+
+.field > .field-border,
+.field::before {
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.field:hover::before {
+  opacity: 1;
+}
+
+.field::before {
+  background: radial-gradient(
+    150px circle at var(--mouse-x) var(--mouse-y),
+    var(--highlight-color-dark),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.field > .field-border {
+  background: radial-gradient(
+    90px circle at var(--mouse-x) var(--mouse-y),
+    var(--highlight-color),
+    transparent 40%
+  );
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.field > .field-content {
+  background-color: var(--bg-color);
+  margin: 1px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+  position: relative;
+  border-radius: inherit;
+  z-index: 2;
+}
+
+/* .field:hover > .field-content {
+  outline: var(--highlight-color-dark) 1px solid;
+} */
+
+.picking-color {
+  width: 20%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 576px) {
+  .picking-color {
+    width: 90%;
+  }
+}
+
+.picking-color > * {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  /* background-color: royalblue; */
+  border: var(--field-color) solid 2px;
+  outline: transparent solid 2px;
+}
+
+.picking-color > *:hover {
+  border-color: transparent;
+  outline-color: var(--field-color);
+}
+
+/* defining the colors for all the child elements of color container */
+
+.picking-color > *:nth-child(1) {
+  background-color: var(--color-one);
+}
+.picking-color > *:nth-child(2) {
+  background-color: var(--color-two);
+}
+.picking-color > *:nth-child(3) {
+  background-color: var(--color-three);
+}
+.picking-color > *:nth-child(4) {
+  background-color: var(--color-four);
+}
+.picking-color > *:nth-child(5) {
+  background-color: var(--color-five);
+}
+.picking-color > *:nth-child(6) {
+  background-color: var(--color-six);
+}
+.picking-color > *:nth-child(7) {
+  background-color: var(--color-seven);
+}
+.picking-color > *:nth-child(8) {
+  background-color: var(--color-eight);
+}
+
+.text-result {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+  .text-result {
+    width: 300px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+.player {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-right: 45px;
+}
+
+.player-cross {
+  position: absolute;
+  display: inline-block;
+  border-top: var(--color-player) solid 3px;
+  width: 40px;
+  right: 0;
+}
+
+.player-cross:nth-child(3) {
+  transform: rotate(45deg);
+}
+
+.player-cross:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.player-cross-filled {
+  position: absolute;
+  display: inline-block;
+  border-top: var(--color-player) solid 3px;
+  width: 100px;
+  right: 0;
+  bottom: 50%;
+}
+
+.player-cross-filled:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.player-cross-filled:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.computer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-right: 45px;
+}
+
+.computer-circle {
+  display: inline-block;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: var(--color-npc) solid 3px;
+  border-radius: 50%;
+  right: 0;
+}
+
+.computer-circle-filled {
+  display: inline-block;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border: var(--color-npc) solid 3px;
+  border-radius: 50%;
+  margin-left: 3px;
+  margin-top: 3px;
+}
