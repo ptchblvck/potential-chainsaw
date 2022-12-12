@@ -43,8 +43,39 @@ body {
   background-repeat: no-repeat;
 }
 
+#chose-wisely {
+  display: flex;
+  flex-direction: column;
+  width: 303px;
+  height: 303px;
+  padding: 10px;
+  border: solid 3px var(--field-color);
+}
+
+#chose-wisely > legend {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#chose-wisely > .game-option {
+  display: flex;
+  flex-direction: column;
+}
+
+#chose-wisely > .game-option > label {
+  padding: 10px;
+  padding-left: 15%;
+}
+
+#chose-wisely > .game-option > label:hover > span {
+  color: var(--color-six);
+}
+
 #fields {
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 3px;

@@ -11,6 +11,14 @@ const npcArray = [];
 
 let playedGames = 0;
 
+// chose your game mode
+
+const player2Computer = document.querySelector(
+  "body > main > div > div.text-result > div.computer > h1"
+);
+
+function gameModeOption() {}
+
 // winning combinations
 function winning(board, player) {
   /* board is the array with all the fields while player is the 
@@ -87,8 +95,9 @@ function playerPick() {
       const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6));
       console.log(pickedFieldIndexNumber);
       xToField(pickedFieldIndexNumber);
-      selectField(pickedFieldIndexNumber, "p");
+      selectField(pickedFieldIndexNumber, "p1");
       console.log(playedFields);
+      playedGames++;
       game();
     });
   });
@@ -96,10 +105,16 @@ function playerPick() {
 
 playerPick();
 
+// determin who wins!
+
 function game() {
-  if (winning(playedFields, "p")) {
+  if (winning(playedFields, "p1")) {
     console.log("Player Wins!");
-    document.querySelector("h1").textContent = "Player Wins!";
+    document.querySelector("h1").textContent = "Player1 Wins!";
+  }
+  if (winning(playedFields, "p2")) {
+    console.log("Player Wins!");
+    document.querySelector("h1").textContent = "Player2 Wins!";
   }
   if (winning(playedFields, "c")) {
     console.log("Computer Wins!");
