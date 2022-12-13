@@ -101,6 +101,7 @@ function gameStart() {
         playedGames++;
         console.log(playedFields);
         gameWinner();
+        miniMax();
         console.log(playedGames);
         console.log(gameState);
       }
@@ -129,7 +130,7 @@ function gameWinner() {
     document.querySelector("h1").textContent = "Computer Wins!";
     gameState = false;
   }
-  if (playedGames > 9) {
+  if (playedGames > 7) {
     console.log("It's a Draw!");
     document.querySelector("h1").textContent = "It's a Draw!";
   }
@@ -137,10 +138,12 @@ function gameWinner() {
 
 // minimax algorithm & AI
 
-function bestSpot() {
-  return miniMax(playFields);
+function bestSpot() {}
+
+function miniMax() {
+  const availableSpots = [];
+  playFields.map((e) => );
+  console.log(availableSpots);
 }
 
-function miniMax(board, player) {
-  let availableSpots;
-}
+// function
