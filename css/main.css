@@ -46,13 +46,14 @@ body {
 #chose-wisely {
   display: flex;
   flex-direction: column;
-  width: 303px;
-  height: 303px;
+  width: 306px;
+  height: 306px;
   padding: 10px;
   border: solid 3px var(--field-color);
 }
 
 #chose-wisely > legend {
+  color: var(--color-five);
   text-align: center;
   font-size: 32px;
   font-weight: bold;
@@ -69,9 +70,61 @@ body {
   padding-left: 15%;
 }
 
+#chose-wisely > .game-option > label:hover {
+  cursor: pointer;
+}
+
 #chose-wisely > .game-option > label:hover > span {
   color: var(--color-six);
 }
+
+#chose-wisely > .game-option > #game-option-ok {
+  margin-top: 30%;
+  place-self: center;
+  width: 30%;
+  background-color: var(--field-color);
+  border: none;
+  border-radius: 2px;
+  color: currentColor;
+}
+
+#chose-wisely > .game-option > #game-option-ok:hover {
+  background-color: var(--color-two);
+  color: black;
+  cursor: pointer;
+}
+
+/* RADIO BUTTONS */
+
+input[type="radio"]:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 15px;
+  top: -1px;
+  left: -1px;
+  position: relative;
+  background-color: var(--bg-color);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid var(--field-color);
+}
+
+input[type="radio"]:checked:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 15px;
+  top: -1px;
+  left: -1px;
+  position: relative;
+  background-color: var(--color-seven);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+
+/* Fields and everything that comes with */
 
 #fields {
   /* display: grid; */

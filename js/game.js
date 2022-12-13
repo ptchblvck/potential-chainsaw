@@ -8,16 +8,12 @@ const availableFields = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const playedFields = availableFields.map((e) => e);
 const playerArray = [];
 const npcArray = [];
+const player1 = "p1";
+const player2 = "p2";
+const cpu = "c";
+const activePlayers = [];
 
 let playedGames = 0;
-
-// chose your game mode
-
-const player2Computer = document.querySelector(
-  "body > main > div > div.text-result > div.computer > h1"
-);
-
-function gameModeOption() {}
 
 // winning combinations
 function winning(board, player) {
@@ -88,40 +84,63 @@ const playFields = document.querySelectorAll(".field");
 
 // player clicked field written to playedFields array with "p"
 
-function playerPick() {
+function gameStart() {
   playFields.forEach((field) => {
     field.addEventListener("click", (e) => {
       const pickedFieldId = e.target.id;
       const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6));
-      console.log(pickedFieldIndexNumber);
-      xToField(pickedFieldIndexNumber);
-      selectField(pickedFieldIndexNumber, "p1");
-      console.log(playedFields);
-      playedGames++;
-      game();
+      if (gameState === true) {
+        if (playedGames % 2 == 0) {
+          xToField(pickedFieldIndexNumber);
+          selectField(pickedFieldIndexNumber, activePlayers[0]);
+        }
+        if (playedGames % 2 != 0) {
+          oToField(pickedFieldIndexNumber);
+          selectField(pickedFieldIndexNumber, activePlayers[1]);
+        }
+        playedGames++;
+        console.log(playedFields);
+        gameWinner();
+        console.log(playedGames);
+        console.log(gameState);
+      }
     });
   });
 }
 
-playerPick();
+activePlayers.push(player1);
+gameStart();
 
 // determin who wins!
 
-function game() {
-  if (winning(playedFields, "p1")) {
-    console.log("Player Wins!");
+function gameWinner() {
+  if (winning(playedFields, player1)) {
+    console.log("Player1 Wins!");
     document.querySelector("h1").textContent = "Player1 Wins!";
+    gameState = false;
   }
-  if (winning(playedFields, "p2")) {
-    console.log("Player Wins!");
+  if (winning(playedFields, player2)) {
+    console.log("Player2 Wins!");
     document.querySelector("h1").textContent = "Player2 Wins!";
+    gameState = false;
   }
-  if (winning(playedFields, "c")) {
+  if (winning(playedFields, cpu)) {
     console.log("Computer Wins!");
     document.querySelector("h1").textContent = "Computer Wins!";
+    gameState = false;
   }
-  if (playedGames > 5) {
+  if (playedGames > 9) {
     console.log("It's a Draw!");
     document.querySelector("h1").textContent = "It's a Draw!";
   }
+}
+
+// minimax algorithm & AI
+
+function bestSpot() {
+  return miniMax(playFields);
+}
+
+function miniMax(board, player) {
+  let availableSpots;
 }
