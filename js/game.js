@@ -4,7 +4,7 @@ const colorDivArray = [];
 let playerChoice;
 let npcChoice;
 let gameState = true;
-const availableFields = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const availableFields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const playedFields = availableFields.map((e) => e);
 const playerArray = [];
 const npcArray = [];
@@ -36,18 +36,25 @@ function winning(board, player) {
   }
 }
 
+// check if field was already picked by either player
+
+function fieldStillEmpty(fieldPosition) {
+  if (
+    playedFields[fieldPosition] == activePlayers[0] ||
+    playedFields[fieldPosition] == activePlayers[1]
+  ) {
+    return true;
+  } else return false;
+}
+
 // draw X into parameter  //? (<div id="fieldPosition"></div>)
 
 function xToField(fieldPosition) {
-  if (playedFields[fieldPosition - 1] == "p") {
-    return false;
-  }
+  let fieldID = "#field" + (fieldPosition + 1);
   for (let i = 0; i < 2; i++) {
     const cross = document.createElement("span");
     cross.className = "player-cross-filled";
-    document
-      .querySelector("#field" + fieldPosition + " > div.field-content")
-      .append(cross);
+    document.querySelector(fieldID + " > div.field-content").append(cross);
   }
   playerArray.push(fieldPosition);
 }
@@ -55,15 +62,11 @@ function xToField(fieldPosition) {
 // npc function to draw a circle to field
 
 function oToField(fieldPosition) {
-  if (playedFields[fieldPosition - 1] == "c") {
-    return false;
-  }
+  let fieldID = "#field" + (fieldPosition + 1);
   for (let i = 0; i < 1; i++) {
     const circle = document.createElement("div");
     circle.className = "computer-circle-filled";
-    document
-      .querySelector("#field" + fieldPosition + " > div.field-content")
-      .append(circle);
+    document.querySelector(fieldID + " > div.field-content").append(circle);
   }
   npcArray.push(fieldPosition);
 }
@@ -88,8 +91,11 @@ function gameStart() {
   playFields.forEach((field) => {
     field.addEventListener("click", (e) => {
       const pickedFieldId = e.target.id;
-      const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6));
-      if (gameState === true) {
+      const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6)) - 1;
+      if (fieldStillEmpty(pickedFieldIndexNumber)) {
+        return false;
+      }
+      if (gameState === true && !fieldStillEmpty(pickedFieldIndexNumber)) {
         if (playedGames % 2 == 0) {
           xToField(pickedFieldIndexNumber);
           selectField(pickedFieldIndexNumber, activePlayers[0]);
@@ -101,7 +107,6 @@ function gameStart() {
         playedGames++;
         console.log(playedFields);
         gameWinner();
-        miniMax();
         console.log(playedGames);
         console.log(gameState);
       }
@@ -140,10 +145,10 @@ function gameWinner() {
 
 function bestSpot() {}
 
-function miniMax() {
-  const availableSpots = [];
-  playFields.map((e) => );
-  console.log(availableSpots);
-}
+// function miniMax() {
+//   const availableSpots = [];
+//   playFields.map((e) => );
+//   console.log(availableSpots);
+// }
 
 // function
