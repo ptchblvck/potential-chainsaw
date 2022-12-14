@@ -90,8 +90,7 @@ const playFields = document.querySelectorAll(".field");
 function gameStart() {
   playFields.forEach((field) => {
     field.addEventListener("click", (e) => {
-      const pickedFieldId = e.target.id;
-      const pickedFieldIndexNumber = parseInt(pickedFieldId.slice(5, 6)) - 1;
+      const pickedFieldIndexNumber = parseInt(e.target.id.slice(5, 6)) - 1;
       if (fieldStillEmpty(pickedFieldIndexNumber)) {
         return false;
       }
