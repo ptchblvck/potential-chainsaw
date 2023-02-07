@@ -138,7 +138,7 @@ function gameWinner() {
     console.log("It's a Draw!");
     gameHeaderName.textContent = "It's a Draw!";
   }
-  toggleResetButton();
+  showResetButton();
 }
 
 // minimax algorithm & AI
@@ -152,3 +152,18 @@ function bestSpot() {}
 // }
 
 // function
+
+/**
+ * this function will empty the playedFields array and reset it to original state
+ */
+
+function resetPlayedFields() {
+  let newPlayFields = availableFields.map((e) => e);
+  newPlayFields.forEach((e, index) => {
+    playedFields.splice(index, 1, e);
+  });
+
+  playedGames = 0;
+  gameState = true;
+  gameHeaderName.textContent = "Tic Tac Toe";
+}

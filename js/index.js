@@ -12,8 +12,16 @@ gameResetButton.addEventListener("click", (e) => {
   dialogResetBoard.showModal();
 });
 
+dialogOptionYesButton.addEventListener("click", (e) => {
+  event.preventDefault();
+  emptyAllPlayFields();
+  resetPlayedFields();
+  dialogResetBoard.close();
+  hideResetButton();
+});
+
 dialogOptionNoButton.addEventListener("click", (e) => {
-  event.preventDefault;
+  event.preventDefault();
   dialogResetBoard.close();
 });
 

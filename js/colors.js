@@ -79,23 +79,3 @@ fields.onmousemove = (e) => {
     field.style.setProperty("--mouse-y", `${y}px`);
   }
 };
-
-function hidePreloadGameButton() {
-  preGameContainer.style.display = "none";
-  gameBoard.style.display = "flex";
-}
-
-function showPreloadGameButton() {
-  preGameContainer.style.display = "grid";
-  gameBoard.style.display = "none";
-}
-
-function toggleResetButton() {
-  let currentDisplayState = gameResetButton.style.display;
-  if (currentDisplayState == "none" || currentDisplayState.length < 1) {
-    gameResetButton.style.display = "block";
-  }
-  if (currentDisplayState == "block") {
-    gameResetButton.style.display = "none";
-  }
-}
