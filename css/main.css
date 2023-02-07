@@ -212,7 +212,7 @@ input[type="radio"]:checked:after {
 }
 
 .field {
-  cursor: pointer;
+  cursor: crosshair;
   position: relative;
   width: 100px;
   height: 100px;
@@ -329,6 +329,7 @@ input[type="radio"]:checked:after {
 .text-result {
   width: 400px;
   display: flex;
+  gap: 5%;
   justify-content: space-between;
   margin-top: 20px;
 }
@@ -368,6 +369,7 @@ input[type="radio"]:checked:after {
 .player:hover,
 .computer:hover {
   scale: 1.1;
+  cursor: default;
 }
 
 .player-cross {
