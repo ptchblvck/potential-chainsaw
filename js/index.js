@@ -85,3 +85,5 @@ function initializePlayer2() {
   console.log("player2 has joined.");
   activePlayers.push(player2);
 }
+
+// this is just a test
