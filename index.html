@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="css/main.css" />
     <link rel="icon" type="image/svg+xml" href="img/tictactoe-svgrepo-com.svg" id="svg-favicon">
     <link rel="icon" type="image/png" href="img/tic-tac-toe-light.png">
+    <script src="js/colors.js" defer></script>
+    <script src="js/index.js" defer></script>
+    <script src="js/game.js" defer></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
     <header></header>
     <main>
+      <div class="pre-game">
+        <h1>Tic Tac Toe</h1>
+        <button id="game-button">Start Game</button>
+      </div>
       <div class="container">
         <h1>Tic Tac Toe</h1>
           <div class="grid">
             <div id="chose-wisely">
+              <button id="close-wisely">X</button>
               <legend>Game Mode</legend>
               <div class="game-option">
                 <label for="solo-play">
@@ -27,44 +35,44 @@
                 <input type="submit" value="OK" id="game-option-ok">
               </div>
             </div>
-          <div id="fields">
-            <div class="field" id="field1">
-                <div class="field-border"></div>
-                <div class="field-content"></div>
+            <div id="fields">
+              <div class="field" id="field1">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>
+              </div>
+              <div class="field" id="field2">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>
+              </div>
+              <div class="field" id="field3">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field4">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field5">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field6">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field7">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field8">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>                
+              </div>
+              <div class="field" id="field9">
+                  <div class="field-border"></div>
+                  <div class="field-content"></div>
+              </div>
             </div>
-            <div class="field" id="field2">
-                <div class="field-border"></div>
-                <div class="field-content"></div>
-            </div>
-            <div class="field" id="field3">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field4">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field5">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field6">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field7">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field8">
-                <div class="field-border"></div>
-                <div class="field-content"></div>                
-            </div>
-            <div class="field" id="field9">
-                <div class="field-border"></div>
-                <div class="field-content"></div>
-            </div>
-          </div>
           </div>
           <div class="picking-color">
             <div id="color1"></div>
@@ -76,6 +84,14 @@
             <div id="color7"></div>
             <div id="color8"></div>
           </div>
+          <button id="game-reset-button">Restart?</button>
+          <dialog id="dialog-reset-board"><div>
+            <legend for="dialog-heading">Want to <span>RESET</span> the board?</legend>
+            <div>
+            <button type="submit">Yes</button>
+            <button>No</button>
+            </div>
+           </div></dialog>
           <div class="text-result">
             <div class="player">
               <h1>Player:</h1>
@@ -90,8 +106,5 @@
         </div>
       </div>
     </main>
-    <script src="js/colors.js" defer></script>
-    <script src="js/index.js" defer></script>
-    <script src="js/game.js" defer></script>
   </body>
 </html>

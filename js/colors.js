@@ -4,6 +4,14 @@ const ticTacToeFieldArray = document.querySelectorAll("div.field");
 const fields = document.getElementById("fields");
 const root = document.querySelector(":root");
 const colors = document.querySelectorAll(".picking-color > div");
+const gameBoard = document.querySelector("body > main > .container");
+const preGameContainer = document.querySelector("body > main > .pre-game");
+const dialogOptionYesButton = document.querySelector(
+  "#dialog-reset-board > div > div > button:nth-child(1)"
+);
+const dialogOptionNoButton = document.querySelector(
+  "#dialog-reset-board > div > div > button:nth-child(2)"
+);
 
 // variables for colors
 
@@ -71,3 +79,23 @@ fields.onmousemove = (e) => {
     field.style.setProperty("--mouse-y", `${y}px`);
   }
 };
+
+function hidePreloadGameButton() {
+  preGameContainer.style.display = "none";
+  gameBoard.style.display = "flex";
+}
+
+function showPreloadGameButton() {
+  preGameContainer.style.display = "grid";
+  gameBoard.style.display = "none";
+}
+
+function toggleResetButton() {
+  let currentDisplayState = gameResetButton.style.display;
+  if (currentDisplayState == "none" || currentDisplayState.length < 1) {
+    gameResetButton.style.display = "block";
+  }
+  if (currentDisplayState == "block") {
+    gameResetButton.style.display = "none";
+  }
+}

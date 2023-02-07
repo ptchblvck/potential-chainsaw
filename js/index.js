@@ -1,9 +1,34 @@
+// game button interactions
+
+const preloadGameButton = document.getElementById("game-button");
+const closeGameOptionButton = document.getElementById("close-wisely");
+const gameResetButton = document.getElementById("game-reset-button");
+const dialogResetBoard = document.getElementById("dialog-reset-board");
+
+preloadGameButton.addEventListener("click", hidePreloadGameButton);
+closeGameOptionButton.addEventListener("click", showPreloadGameButton);
+
+gameResetButton.addEventListener("click", (e) => {
+  dialogResetBoard.showModal();
+});
+
+dialogOptionNoButton.addEventListener("click", (e) => {
+  event.preventDefault;
+  dialogResetBoard.close();
+});
+
 // chose your game mode
 
 const gameMode = document.getElementById("chose-wisely");
 const gameModeSub = document.getElementById("game-option-ok");
 const player2Computer = document.querySelector(
   "body > main > div > div.text-result > div.computer > h1"
+);
+
+// game heading
+
+const gameHeaderName = document.querySelector(
+  "body > main > div.container > h1"
 );
 
 // variables

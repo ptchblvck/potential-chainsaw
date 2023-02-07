@@ -13,6 +13,8 @@
   --color-player: #143cdb;
   --color-npc: #db143c;
 
+  --color-white: rgb(228, 228, 228);
+
   --bg-color: rgb(31, 33, 44);
   --field-color: rgb(53, 52, 59);
 
@@ -25,15 +27,67 @@
 }
 
 body {
-  color: rgb(228, 228, 228);
+  color: var(--color-white);
   margin: 0;
   font-family: sans-serif;
   background-color: var(--bg-color);
   background-repeat: no-repeat;
 }
 
+.pre-game {
+  display: grid;
+  height: 70vh;
+}
+
+.pre-game > h1 {
+  text-align: center;
+}
+
+#game-button {
+  place-self: center;
+  align-self: center;
+  background-color: #498b75;
+  border: none;
+  border-radius: 5px;
+  padding: 25px 50px;
+  font-size: 3em;
+  color: var(--color-white);
+  animation-duration: 0.5s;
+  animation-name: game-button-unloader;
+  animation-timing-function: ease-in-out;
+}
+
+#game-button:hover {
+  color: var(--bg-color);
+  animation-duration: 1s;
+  animation-name: game-button-loader;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes game-button-loader {
+  from {
+    background-color: #498b75;
+  }
+  to {
+    background-color: #7fffd4;
+  }
+}
+
+@keyframes game-button-unloader {
+  from {
+    background-color: #7fffd4;
+  }
+  50% {
+    color: var(--color-white);
+  }
+  to {
+    background-color: #498b75;
+  }
+}
+
 .container {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
 }
@@ -45,11 +99,31 @@ body {
 
 #chose-wisely {
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 306px;
   height: 306px;
   padding: 10px;
   border: solid 3px var(--field-color);
+}
+
+#close-wisely {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--field-color);
+  color: var(--color-white);
+  padding: 2px 5px;
+}
+
+#close-wisely:hover {
+  background-color: #db143c;
+  color: var(--bg-color);
 }
 
 #chose-wisely > legend {
@@ -127,7 +201,6 @@ input[type="radio"]:checked:after {
 /* Fields and everything that comes with */
 
 #fields {
-  /* display: grid; */
   display: none;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -260,6 +333,22 @@ input[type="radio"]:checked:after {
   margin-top: 20px;
 }
 
+#game-reset-button {
+  display: none;
+  place-self: center;
+  background-color: var(--field-color);
+  border: none;
+  border-radius: 2px;
+  color: currentColor;
+  padding: 10px 20px;
+}
+
+#game-reset-button:hover {
+  background-color: var(--color-two);
+  color: black;
+  cursor: pointer;
+}
+
 @media (max-width: 576px) {
   .text-result {
     width: 300px;
@@ -340,4 +429,47 @@ input[type="radio"]:checked:after {
   border-radius: 50%;
   margin-left: 3px;
   margin-top: 3px;
+}
+
+#dialog-reset-board {
+  text-align: center;
+  background-color: var(--bg-color);
+  color: var(--color-white);
+  border-radius: 3px;
+  border: solid 1px;
+}
+
+#dialog-reset-board::backdrop {
+  backdrop-filter: blur(2px);
+}
+
+#dialog-reset-board > div > div {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-evenly;
+}
+
+#dialog-reset-board > div > legend > span {
+  font-weight: bolder;
+  display: inline-block;
+  color: var(--color-eight);
+}
+
+#dialog-reset-board > div > div > button {
+  background-color: var(--field-color);
+  color: currentColor;
+  border: none;
+  border-radius: 2px;
+  width: 60px;
+  padding-block: 5px;
+}
+
+#dialog-reset-board > div > div > button:nth-child(1):hover {
+  background-color: var(--color-five);
+  color: var(--bg-color);
+}
+
+#dialog-reset-board > div > div > button:nth-child(2):hover {
+  background-color: var(--color-eight);
+  color: var(--bg-color);
 }

@@ -121,23 +121,24 @@ gameStart();
 function gameWinner() {
   if (winning(playedFields, player1)) {
     console.log("Player1 Wins!");
-    document.querySelector("h1").textContent = "Player1 Wins!";
+    gameHeaderName.textContent = "Player1 Wins!";
     gameState = false;
   }
   if (winning(playedFields, player2)) {
     console.log("Player2 Wins!");
-    document.querySelector("h1").textContent = "Player2 Wins!";
+    gameHeaderName.textContent = "Player2 Wins!";
     gameState = false;
   }
   if (winning(playedFields, cpu)) {
     console.log("Computer Wins!");
-    document.querySelector("h1").textContent = "Computer Wins!";
+    gameHeaderName.textContent = "Computer Wins!";
     gameState = false;
   }
   if (playedGames > 7) {
     console.log("It's a Draw!");
-    document.querySelector("h1").textContent = "It's a Draw!";
+    gameHeaderName.textContent = "It's a Draw!";
   }
+  toggleResetButton();
 }
 
 // minimax algorithm & AI
